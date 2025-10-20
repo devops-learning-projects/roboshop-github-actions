@@ -7,7 +7,7 @@ on:
 jobs:
   java:
     runs-on: self-hosted
-    if: ${{ inputs.app_type == 'java' }}
+    if: ${{ inputs.app_type }} == 'java'
     steps:
       - uses: actions/checkout@v4
       - name: Run a one-line script
