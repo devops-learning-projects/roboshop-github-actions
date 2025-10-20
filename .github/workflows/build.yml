@@ -11,4 +11,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: echo Hello, java!
+
+  nodejs:
+    runs-on: self-hosted
+    if: ${{ inputs.app_type }} == 'nodejs'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run a one-line script
+        run: echo Hello, nodejs!
+
+  python:
+    runs-on: self-hosted
+    if: ${{ inputs.app_type }} == 'python'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run a one-line script
+        run: echo Hello, python!
