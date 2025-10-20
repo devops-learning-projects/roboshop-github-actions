@@ -11,12 +11,10 @@ jobs:
       app_type: ${{ inputs.app_type }}
 
   test:
-    runs-on: self-hosted
+    uses: ./.github/workflows/unit-test.yml
     needs: build
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run a one-line script
-        run: echo Hello, world!
+    with:
+      app_type: ${{ inputs.app_type }}
 
   dev-deploy:
     runs-on: self-hosted
