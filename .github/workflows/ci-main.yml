@@ -8,7 +8,7 @@ jobs:
   build:
     uses: ./.github/workflows/build.yml
     with:
-      app_type: nodejs
+      app_type: ${{ inputs.app_type }}
 
   test:
     runs-on: self-hosted
