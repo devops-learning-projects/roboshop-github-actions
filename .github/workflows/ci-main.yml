@@ -5,20 +5,20 @@ on:
         required: true
         type: string
 jobs:
-  build:
-    uses: ./.github/workflows/build.yml
+  test:
+    uses: ./.github/workflows/unit-test.yml
     with:
       app_type: ${{ inputs.app_type }}
 
-  test:
-    uses: ./.github/workflows/unit-test.yml
-    needs: build
+  build:
+    uses: ./.github/workflows/build.yml
+    needs: test
     with:
       app_type: ${{ inputs.app_type }}
 
   dev-deploy:
     runs-on: self-hosted
-    needs: test
+    needs: build
     environment: dev # environment is used for pause and review
     steps:
       - uses: actions/checkout@v4

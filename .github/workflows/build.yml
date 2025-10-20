@@ -16,13 +16,13 @@ jobs:
           mvn package
 
 ## Python and Nodejs does not have anything to do at build phase
-  nodejs:
-    runs-on: self-hosted
-    if: inputs.app_type == 'nodejs'
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run a one-line script
-        run: echo Hello, world!
+#  nodejs:
+#    runs-on: self-hosted
+#    if: inputs.app_type == 'nodejs'
+#    steps:
+#      - uses: actions/checkout@v4
+#      - name: Run a one-line script
+#        run: echo Hello, world!
 #
 #  python:
 #    runs-on: self-hosted
