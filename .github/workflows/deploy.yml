@@ -12,7 +12,7 @@ jobs:
   deploy:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/checkout@v5
         with:
           repository: 'devops-learning-projects/roboshop-helm'
@@ -20,5 +20,4 @@ jobs:
       - name: Deploy
         run: |
           cd helm
-          ls -l
-          echo ${GITHUB_SHA}
+          helm upgrade -i ${{ inputs.app_name }} . -f env_${{ inputs.app_env}}/${{ inputs.app_name }}.yaml
