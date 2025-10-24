@@ -1,2 +1,4 @@
-docker build -t rkalluru/github-runner .
-docker push rkalluru/github-runner
+git pull
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 804756348441.dkr.ecr.us-east-1.amazonaws.com
+docker build -t 804756348441.dkr.ecr.us-east-1.amazonaws.com/runner:latest .
+docker push 804756348441.dkr.ecr.us-east-1.amazonaws.com/runner:latest
