@@ -20,4 +20,5 @@ jobs:
       - name: Deploy
         run: |
           cd helm
+          aws eks update-kubeconfig --name dev
           helm upgrade -i ${{ inputs.app_name }} . -f env_${{ inputs.app_env}}/${{ inputs.app_name }}.yaml
