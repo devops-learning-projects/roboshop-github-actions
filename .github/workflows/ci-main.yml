@@ -21,10 +21,8 @@ jobs:
       app_name: ${{ inputs.app_name }}
 
   dev-deploy:
-    runs-on: self-hosted
-    needs: build
-    environment: dev # environment is used for pause and review
     uses: devops-learning-projects/roboshop-github-actions/.github/workflows/deploy.yml@main
+    needs: build
     with:
       app_name: ${{ inputs.app_name }}
       app_env: dev
