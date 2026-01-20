@@ -23,8 +23,15 @@ jobs:
           fi
       - name: Docker Build
         run: |
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 804756348441.dkr.ecr.us-east-1.amazonaws.com
           docker build -t 804756348441.dkr.ecr.us-east-1.amazonaws.com/${{inputs.app_name}}:${GITHUB_SHA} .
+
+      - name: Docker Image Scan
+        run: |
+          trivy image 804756348441.dkr.ecr.us-east-1.amazonaws.com/${{inputs.app_name}}:${GITHUB_SHA} --ignore-unfixed --exit-code 1
+
+      - name: Docker Push
+        run: |
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 804756348441.dkr.ecr.us-east-1.amazonaws.com
           docker push 804756348441.dkr.ecr.us-east-1.amazonaws.com/${{inputs.app_name}}:${GITHUB_SHA}
 
 ## Python and Nodejs does not have anything to do at build phase
