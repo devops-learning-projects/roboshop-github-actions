@@ -21,6 +21,10 @@ jobs:
           if [ "${{inputs.app_type}}" == "nodejs" ]; then
             npm install
           fi
+      - name: SonarQube Scan
+        run: |
+          echo /home/github/sonar-scanner-7.1.0.4889-linux-x64/bin/sonar-scanner -Dsonar.token=<generate token> -Dsonar.host.url=http://<ip>:9000 -Dsonar.qualitygate.wait=true -Dsonar.projectKey=${{inputs.app_name}
+
       - name: Docker Build
         run: |
           docker build -t 804756348441.dkr.ecr.us-east-1.amazonaws.com/${{inputs.app_name}}:${GITHUB_SHA} .
